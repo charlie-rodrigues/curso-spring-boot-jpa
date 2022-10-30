@@ -8,9 +8,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
+import com.cursospringboot.cursospringboot.entities.Category;
 import com.cursospringboot.cursospringboot.entities.Order;
 import com.cursospringboot.cursospringboot.entities.User;
 import com.cursospringboot.cursospringboot.enums.OrderStatus;
+import com.cursospringboot.cursospringboot.repositories.CategoryRepository;
 import com.cursospringboot.cursospringboot.repositories.OrderRepository;
 import com.cursospringboot.cursospringboot.repositories.UserRepository;
 
@@ -21,9 +23,17 @@ public class TestConfig implements CommandLineRunner {
 	private UserRepository userRepository;
 	@Autowired
 	private OrderRepository orderRepsitory;
+	@Autowired CategoryRepository categoryRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		Category cat1 = new Category(null,"eletrinic");
+		Category cat2 = new Category(null,"movies");
+		Category cat3 = new Category(null,"music");
+		categoryRepository.saveAll(Arrays.asList(cat1,cat2,cat3));
+		
+				
 		User u1 = new User(null, "charlie", "charlie@gmail", "88998877", "1234");
 		User u2 = new User(null, "larissa", "larissa@gmail", "99889977", "1236");
 		
