@@ -1,17 +1,13 @@
 package com.cursospringboot.cursospringboot.entities;
 
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import com.cursospringboot.cursospringboot.entities.pk.OrderItemPK;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -45,6 +41,7 @@ public class OrderItem implements Serializable {
 		id.setOrder(order);
 	}
 
+	
 	public Product getProduct() {
 		return id.getProduct();
 	}
