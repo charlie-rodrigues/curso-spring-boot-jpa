@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.cursospringboot.cursospringboot.entities.Category;
 import com.cursospringboot.cursospringboot.entities.Order;
 import com.cursospringboot.cursospringboot.entities.OrderItem;
+import com.cursospringboot.cursospringboot.entities.Payment;
 import com.cursospringboot.cursospringboot.entities.Product;
 import com.cursospringboot.cursospringboot.entities.User;
 import com.cursospringboot.cursospringboot.enums.OrderStatus;
@@ -62,7 +63,7 @@ public class TestConfig implements CommandLineRunner {
 		User u1 = new User(null, "charlie", "charlie@gmail", "88998877", "1234");
 		User u2 = new User(null, "larissa", "larissa@gmail", "99889977", "1236");
 
-		Order o1 = new Order(null, Instant.parse("2022-10-22T22:22:22Z"), OrderStatus.CANCELED, u1);
+		Order o1 = new Order(null, Instant.parse("2022-10-22T22:22:22Z"), OrderStatus.PAID, u1);
 		Order o2 = new Order(null, Instant.parse("2002-09-23T23:44:12Z"), OrderStatus.DELIVERED, u2);
 		Order o3 = new Order(null, Instant.parse("2019-04-29T10:00:00Z"), OrderStatus.WAITING_PAYMENT, u1);
 		userRepository.saveAll(Arrays.asList(u1, u2));
@@ -73,6 +74,10 @@ public class TestConfig implements CommandLineRunner {
 		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice());
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 		orderItemRepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
+		
+		Payment pay1 = new Payment(null, Instant.parse("2022-10-22T22:22:22Z"), o1);
+		o1.setPayment(pay1);
+		orderRepsitory.save(o1);
 
 	}
 }
