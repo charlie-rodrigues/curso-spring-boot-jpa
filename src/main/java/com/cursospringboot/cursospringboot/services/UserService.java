@@ -23,5 +23,8 @@ private UserRepository repository;
 	public User insert(User obj) {
 		return repository.save(obj);
 	}
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
 	
 }
